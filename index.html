@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Projet Sans Fil</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="/icons/css/material-design-iconic-font.min.css"
+    />
+  </head>
+  <body>
+    <div id="viewport">
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <header>
+          <a href="#">Access Points Mapper</a>
+        </header>
+        <div class="nav">
+          <p>Obstacles :</p>
+          <ul id="images">
+            <li><img src="images/iron.png" title="Métal" id="iron" /></li>
+            <li><img src="images/cement.png" title="Cément" id="cement" /></li>
+            <li><img src="images/crystal.png" title="Cristal" id="crystal" /></li>
+            <li><img src="images/wood.png" title="Bois" id="wood" /></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Content -->
+      <div id="content">
+        <div id="canvas"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/canvas.js"></script>
+  </body>
+</html>
