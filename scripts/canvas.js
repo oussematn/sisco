@@ -80,14 +80,27 @@ function addAccessPoint() {
     radius = Number(radius);
     let c = document.getElementById("innerCanvas");
     let ctx = c.getContext("2d");
+    // Make inner canvas full width and heigth
     c.width = document.body.clientWidth;
-    c.height = document.body.clientHeight; 
+    c.height = document.body.clientHeight;
     canvasW = c.width;
     canvasH = c.height;
     ctx.beginPath();
-    ctx.arc(e.clientX-250, e.clientY, radius, 0, 2 * Math.PI);
+    ctx.arc(e.clientX, e.clientY, radius, 0, 2 * Math.PI);
     ctx.stroke();
-    let gradient = ctx.createLinearGradient(0, 0, 0, 170);
+    //calculating colors
+    let green = (radius / 100) * 30;
+    let x = e.clientX;
+    let y = e.clientY;
+    // Radii of the white glow.
+    let innerRadius = green;
+    let outerRadius = green + ((green / 100) * 20);
+    let gradient = ctx.createRadialGradient(x, y, innerRadius, x-250, y, outerRadius);
+    gradient.addColorStop(0, '#04ff00');
+    gradient.addColorStop(1, 'red');
+    ctx.arc(x-250, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = gradient;
+    ctx.fill();
   });
 }
 
