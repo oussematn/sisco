@@ -1,6 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500");
  */
-@font-face{
+@font-face {
   font-family: "Roboto";
   src: url(/roboto_font/Roboto-Black.ttf);
 }
@@ -12,16 +12,16 @@ body {
   font-size: 16px;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
-img{
+img {
   width: 50px;
 }
 
-p{
-  display:block;
+p {
+  display: block;
 }
 
 /* Toggle Styles */
@@ -75,7 +75,6 @@ p{
   color: #fff;
 }
 
-
 #sidebar .nav {
   background: none;
   border-bottom: 1px solid #455a64;
@@ -93,16 +92,16 @@ p{
   margin-right: 16px;
 }
 
-#images{
+#images {
   display: flex;
   margin-left: -40px;
 }
 
-#images img{
-  transition: all .4s ease-in-out;
+#images img {
+  transition: all 0.4s ease-in-out;
 }
 
-#images img:hover{
+#images img:hover {
   transform: scale(1.1);
 }
 
@@ -120,12 +119,12 @@ p{
 }
 
 .iron {
-  background: #9391A8;
+  background: #9391a8;
   position: absolute;
 }
 
 .cement {
-  background: #B73239;
+  background: #b73239;
   position: absolute;
 }
 
@@ -135,6 +134,23 @@ p{
 }
 
 .wood {
-  background: #966F33;
+  background: #966f33;
   position: absolute;
+}
+
+.btn {
+  margin: 10px;
+}
+
+.APContent{
+  display: flex;
+}
+
+#addAccessBtn{
+  margin-top: -0.5px;
+  height: 40px;
+}
+
+#innerCanvas{
+  
 }

@@ -24,21 +24,48 @@
       <!-- Sidebar -->
       <div id="sidebar">
         <header>
-          <a href="#">Access Points Mapper</a>
+          <a href="#">Sisko Mapper</a>
         </header>
         <div class="nav">
           <p>Obstacles :</p>
           <ul id="images">
             <li><img src="images/iron.png" title="Métal" id="iron" /></li>
             <li><img src="images/cement.png" title="Cément" id="cement" /></li>
-            <li><img src="images/crystal.png" title="Cristal" id="crystal" /></li>
+            <li>
+              <img src="images/crystal.png" title="Cristal" id="crystal" />
+            </li>
             <li><img src="images/wood.png" title="Bois" id="wood" /></li>
           </ul>
+        </div>
+        <div class="nav">
+          <p>Point d'accès :</p>
+          <div class="APContent">
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                id="APradius"
+                placeholder="Couverture"
+                min="1"
+              />
+            </div>
+            <button class="btn btn-primary" id="addAccessBtn">
+              <i class="zmdi zmdi-plus-circle-o zmdi-hc-lg"></i>
+            </button>
+          </div>
+        </div>
+        <div class="nav">
+          <p>Se connecter :</p>
+          <button class="btn btn-primary" id="selectAccessBtn">
+            Choisir le meilleur point d'accès
+          </button>
         </div>
       </div>
       <!-- Content -->
       <div id="content">
-        <div id="canvas"></div>
+        <div id="canvas">
+          <canvas id="innerCanvas"></canvas>
+        </div>
       </div>
     </div>
 
