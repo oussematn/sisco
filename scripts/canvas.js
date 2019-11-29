@@ -18,7 +18,6 @@ class obstacle {
 // Choosing material
 let material;
 let materials = document.querySelectorAll("img"); // Return a nodeList (can apply array method)
-let disableAddObstacle = 0;
 
 for (var i in materials) {
   materials[i].onclick = function () {
@@ -34,6 +33,7 @@ function selectMaterial(e) {
 
 //! Drawing
 let obstacles = [];
+let disableAddObstacle = 0;
 initDraw(document.getElementById('canvas'));
 
 function initDraw(canvas) {
@@ -89,59 +89,61 @@ function initDraw(canvas) {
       canvas.appendChild(element)
       canvas.style.cursor = "crosshair";
       obstacles.push(new obstacle(mouse.x, mouse.y, width, height));
-      console.log(obstacles);
     }
   }
 
 }
 
 //! Add access point
+let disableAddAP = 0;
 const addBtn = document.querySelector('#addAccessBtn');
 let accessPoints = [];
 addBtn.addEventListener('click', addAccessPoint);
 function addAccessPoint() {
-  // change cursor
-  let canvas = document.querySelector('#canvas');
-  let radius = document.querySelector('#APradius').value;
-  canvas.addEventListener('mouseenter', (e) => {
-    canvas.style.cursor = "url('/images/ap.png'), auto";
-  });
-  let c = document.getElementById("innerCanvas");
-  let ctx = c.getContext("2d");
-  // Make inner canvas full width and heigth
-  c.width = document.body.clientWidth;
-  c.height = document.body.clientHeight;
-  canvasW = c.width;
-  canvasH = c.height;
-  canvas.addEventListener('click', (e) => {
-    radius = Number(radius);
-    ctx.beginPath();
-    ctx.arc(e.clientX - 250, e.clientY, radius, 0, 2 * Math.PI);
-    ctx.stroke();
-    //calculating colors
-    let x = e.clientX;
-    let y = e.clientY;
-    // Radii of the white glow.
-    let innerRadius = radius * 0.04;
-    let outerRadius = radius * 1.25;
-    let gradient = ctx.createRadialGradient(x - 250, y, innerRadius, x - 250, y, outerRadius);
-    gradient.addColorStop(0, 'rgba(4, 255, 0,0.7)');
-    gradient.addColorStop(1, 'rgba(0, 191, 255,0.6)');
-    ctx.arc(x - 250, y, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = gradient;
-    ctx.fill();
-    disableAddObstacle = 1;
-    accessPoints.push(new AP(e.clientX, e.clientY, radius));
+    // change cursor
+    let canvas = document.querySelector('#canvas');
+    let radius = document.querySelector('#APradius').value;
+    canvas.addEventListener('mouseenter', (e) => {
+      canvas.style.cursor = "url('/images/ap.png'), auto";
+    });
+    let c = document.getElementById("innerCanvas");
+    let ctx = c.getContext("2d");
+    // Make inner canvas full width and heigth
+    c.width = document.body.clientWidth;
+    c.height = document.body.clientHeight;
+    canvasW = c.width;
+    canvasH = c.height;
+    canvas.addEventListener('click', (e) => {
+      if (disableAddAP==0) {
+        radius = Number(radius);
+        ctx.beginPath();
+        ctx.arc(e.clientX - 250, e.clientY, radius, 0, 2 * Math.PI);
+        ctx.stroke();
+        //calculating colors
+        let x = e.clientX;
+        let y = e.clientY;
+        // Radii of the white glow.
+        let innerRadius = radius * 0.04;
+        let outerRadius = radius * 1.25;
+        let gradient = ctx.createRadialGradient(x - 250, y, innerRadius, x - 250, y, outerRadius);
+        gradient.addColorStop(0, 'rgba(4, 255, 0,0.7)');
+        gradient.addColorStop(1, 'rgba(0, 191, 255,0.6)');
+        ctx.arc(x - 250, y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        disableAddObstacle = 1;
+        accessPoints.push(new AP(e.clientX, e.clientY, radius));
 
-    // create text on a circle
-    let txt = document.createElement('div');
-    txt.innerHTML = `AP${accessPoints.length}`;
-    txt.style.position = 'absolute';
-    txt.style.left = `${e.clientX - 250}px`;
-    txt.style.top = `${e.clientY}px`;
-    txt.style.zIndex = "100000";
-    canvas.appendChild(txt);
-  });
+        // create text on a circle
+        let txt = document.createElement('div');
+        txt.innerHTML = `AP${accessPoints.length}`;
+        txt.style.position = 'absolute';
+        txt.style.left = `${e.clientX - 250}px`;
+        txt.style.top = `${e.clientY}px`;
+        txt.style.zIndex = "100000";
+        canvas.appendChild(txt);
+    }});
+  
 }
 
 document.querySelector("#sidebar").addEventListener('mouseenter', () => {
@@ -158,9 +160,22 @@ let resultBtn = document.querySelector('#selectAccessBtn');
 resultBtn.addEventListener('click', selectAP);
 function selectAP() {
   // Shift array with 1 position because of a latency in the onclick event
-  for (let i = 0; i < obstacles.length-1 ;i++) {
-    obstacles[i].owidth=obstacles[i+1].owidth;
-    obstacles[i].oheight=obstacles[i+1].oheight;
+  for (let i = 0; i < obstacles.length - 1; i++) {
+    obstacles[i].owidth = obstacles[i + 1].owidth;
+    obstacles[i].oheight = obstacles[i + 1].oheight;
   }
-  obstacles.splice(-1,1);
+  obstacles.splice(-1, 1);
+
+  // Disabling adding access points
+  disableAddAP = 1;
+
+  //Getting User position onclick
+  let userX, userY;
+  canvas.addEventListener('click',(e)=>{
+    console.log("hello");
+    userX=e.clientX-250;
+    userY=e.clientY;
+    console.log(userX);
+  });
+  
 }
