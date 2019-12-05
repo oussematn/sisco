@@ -149,3 +149,20 @@ p {
   position: absolute;
   z-index: 10000;
 }
+
+#result {
+  background: none;
+  border-bottom: 1px solid #455a64;
+  color: #cfd8dc;
+  font-size: 18px;
+  padding: 16px 24px;
+}
+
+#result:hover {
+  background: none;
+  color: #eceff1;
+}
+
+#result-content{
+  font-size: 14px;
+}
