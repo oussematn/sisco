@@ -330,9 +330,9 @@ function selectAP() {
     //console.log("access point " + bestAp);
     //console.log(maxReception);
     res.innerHTML = `
-      Meilleur point d'accés : ${bestAp}
+      Best Access Point : ${bestAp}
       <br>
-      Qualité signal : ${maxReception}%
+      Signal Quality : ${maxReception}%
       `;
    }
    res.style.display = 'block';
